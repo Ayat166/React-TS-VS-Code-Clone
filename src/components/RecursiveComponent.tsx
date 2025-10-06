@@ -1,9 +1,6 @@
 import { useState } from "react";
 import type { IData } from "../interfaces";
-import FileIcon from "./SVG/file";
-import FolderIcon from "./SVG/folder";
-import RightIcon from "./SVG/RightIcon";
-import DownIcon from "./SVG/DownIcon";
+import VsCodeIcon from "./SVG/VsCodeIcon";
 interface RecursiveComponentProps {
   fileTree: IData;
 }
@@ -15,19 +12,12 @@ function RecursiveComponent({ fileTree }: RecursiveComponentProps) {
   return (
     <div className="pl-4 py-1">
       <div className="flex items-center hover:bg-gray-800 cursor-pointer" onClick={toggleIconFolder}>
-        {fileTree.isFolder ? (
-          <>
-            {isOpen ? <DownIcon /> : <RightIcon />}
-            <span className="mr-2">
-              <FolderIcon />
-            </span>
-          </>
-        ) : (
-          <span className="mr-2">
-            <FileIcon />
-          </span>
-        )}
-
+        
+        
+        <span className="mr-2">
+          <VsCodeIcon fileName={fileTree.name} isOpen={isOpen} isFolder={fileTree.isFolder}/>
+        </span>
+    
         <span>{fileTree.name}</span>
       </div>
       {isOpen && fileTree.children &&
