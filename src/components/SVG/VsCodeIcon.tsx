@@ -15,18 +15,17 @@ function VsCodeIcon({ fileName, isOpen, isFolder }: VsCodeIconProps) {
   let iconFile = "";
   
   if (isFolder) {
-    iconFile =
-      iconMap[`${lowerName}_folder`] ||
-      `folder${isOpen ? "_opened" : ""}.svg`;
+    const baseName = iconMap[`${lowerName}_folder`] || "default_folder";
+    iconFile = `${baseName}${isOpen ? "_opened.svg" : ".svg"}`;
   } else {
     if (iconMap[lowerName]) {
-      iconFile = iconMap[lowerName];
+      iconFile = iconMap[lowerName]+ ".svg";
     } else {
       const parts = lowerName.split(".");
       const ext =
         parts.length > 2 ? parts.slice(-2).join("_") : parts.pop() || "";
 
-      iconFile = iconMap[ext] || iconMap[parts.pop() || ""] || "default_file.svg";
+      iconFile = iconMap[ext] + ".svg" || iconMap[parts.pop() || ""]+".svg" || "default_file.svg";
     }
   }
 
